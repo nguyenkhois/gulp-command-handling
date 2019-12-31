@@ -16,8 +16,8 @@ gulpCommand
 function builds(cb) {
     const result = gulpCommand.parse(process.argv.slice(2));
 
-    //console.log(gulpCommand.getOptions());
-    //console.log(result);
+    console.log(gulpCommand.getOptions());
+    console.log(result);
 
 
     cb();
