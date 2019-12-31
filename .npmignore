@@ -1,0 +1,13 @@
+.vs
+.vscode
+.idea
+.DS_Store
+
+.editorconfig
+.eslintignore
+.eslintrc.json
+package-lock.json
+
+gulpfile.js
+
+node_modules
