@@ -1,10 +1,15 @@
 'use strict';
-const { regexpOption, regexpAlias, typeOfParam, removeAliasSymbol } = require('./helpers');
+const { dfRegExOption, dfRegExAlias, typeOfParam, removeAliasSymbol } = require('./helpers');
 
 //COMMAND constructor
 function Command() {
-    this.options = {}; //Option definition
-    this.parsed = {}; //Parsed the user's command by using references from options
+    this.options = {}; //Option list
+    this.parsed = {}; //Parsing the user's command by using option list
+    this.settings = { //Custom settings
+        regexOption: false,
+        regexAlias: false,
+        regexArgument: false
+    };
 }
 
 /**
@@ -21,7 +26,26 @@ function Option(option, aliasKey, description) {
     };
 }
 
+Command.prototype.setting = function (customSettings = { regexOption: false, regexAlias: false, regexArgument: false }) {
+    if (customSettings.regexOption === RegExp(customSettings.regexOption)) {
+        this.settings.regexOption = customSettings.regexOption;
+    }
+
+    if (customSettings.regexAlias === RegExp(customSettings.regexAlias)) {
+        this.settings.regexAlias = customSettings.regexAlias;
+    }
+
+    if (customSettings.regexArgument === RegExp(customSettings.regexArgument)) {
+        this.settings.regexArgument = customSettings.regexArgument;
+    }
+
+    return this;
+};
+
 Command.prototype.option = function (taskName, option, alias, description = "") {
+    const regExOption = this.settings.regexOption ? this.settings.regexOption : dfRegExOption,
+        regExAlias = this.settings.regexAlias ? this.settings.regexAlias : dfRegExAlias;
+
     //Checking input params
     if (!taskName || !option || !alias) {
         if (!taskName) {
@@ -31,7 +55,7 @@ Command.prototype.option = function (taskName, option, alias, description = "") 
         } else if (!alias) {
             throw (new Error('Missing the input parameter -> alias'));
         }
-    } else if (!regexpOption.test(option) && !regexpAlias.test(alias)) {
+    } else if (!regExOption.test(option) || !regExAlias.test(alias)) {
         throw (new Error('The input params are invalid'));
     }
 
@@ -70,6 +94,9 @@ Command.prototype.option = function (taskName, option, alias, description = "") 
 };
 
 Command.prototype.subOption = function (taskName, optionAlias, subOption, subOptionAlias, description = "") {
+    const regExOption = this.settings.regexOption ? this.settings.regexOption : dfRegExOption,
+        regExAlias = this.settings.regexAlias ? this.settings.regexAlias : dfRegExAlias;
+
     //Checking input params
     if (!taskName || !optionAlias || !subOption || !subOptionAlias) {
         if (!taskName) {
@@ -81,9 +108,9 @@ Command.prototype.subOption = function (taskName, optionAlias, subOption, subOpt
         } else if (!subOptionAlias) {
             throw (new Error('Missing the parameter -> subOptionAlias'));
         }
-    } else if (!regexpAlias.test(optionAlias) &&
-        !regexpOption.test(subOption) &&
-        !regexpAlias.test(subOptionAlias)) {
+    } else if (!regExAlias.test(optionAlias) ||
+        !regExOption.test(subOption) ||
+        !regExAlias.test(subOptionAlias)) {
 
         throw (new Error('The input params are invalid'));
     }
@@ -128,6 +155,11 @@ Command.prototype.parse = function (processArgv = []) {
         if (!processArgv || !Array.isArray(processArgv)) {
             throw (new Error(`\x1b[31mMissing the parameter: processArgv. It must be an array of argument(s)\x1b[0m`));
         }
+        const customRegEx = {
+            regexOption: this.settings.regexOption,
+            regexAlias: this.settings.regexAlias,
+            regexArgument: this.settings.regexArgument
+        };
 
         const processArgvLength = processArgv.length,
             taskName = processArgv[0];
@@ -141,7 +173,7 @@ Command.prototype.parse = function (processArgv = []) {
             const optionRef = taskRef.reference; // Get reference list (Mapping)
 
             for (let i = 1; i < processArgvLength; ++i) {
-                cmdPart = typeOfParam(processArgv[i]);
+                cmdPart = typeOfParam(processArgv[i], customRegEx);
 
                 switch (cmdPart) {
                     case 'option':

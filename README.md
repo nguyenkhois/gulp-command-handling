@@ -58,22 +58,24 @@ The simple command line structure is used in this library:
 
 ### Methods
 
-| Method          | Argument                                                              | Description                                 |
-| --------------- | --------------------------------------------------------------------- | ------------------------------------------- |
-| `.option()`     | `<task>, <option>, <optionAlias>, [description]`                      | Option definition                           |
-| `.subOption()`  | `<task>, <optionAlias>, <subOption>, <subOptionAlias>, [description]` | Sub option definition                       |
-| `.getOptions()` | -                                                                     | It returns an option list that is an object |
-| `.parse()`      | `<process.argv>`                                                      | Parse the command line                      |
+| Method | Argument | Description |
+|---|---|---|
+|`.setting()`|Object|Setting definition _(Ex: custom RegExp)_|
+|`.option()`|`<task>, <option>, <optionAlias>, [description]`|Option definition|
+|`.subOption()`|`<task>, <optionAlias>, <subOption>, <subOptionAlias>, [description]`|Sub option definition|
+|`.getOptions()`|-|It returns an option list that is an object|
+|`.parse()`|`<process.argv>`|Parse the command line|
 
-You can use method chaining for these methods:
+You can use method chaining with the sorting:
 
--   `option`
--   `subOption`
--   `parse` <- This method must be in the end of chaining.
+- `setting`
+- `option`
+- `subOption`
+- `parse` <- This method must be in the end of chaining.
 
 ## 5. Example
 
-View more in the example `gulpfile.js` on GitHub repo.
+View more in the example `/gulpfile.js` on [GitHub repo](https://github.com/nguyenkhois/gulp-command-handling).
 
 ```
 // gulpfile.js
