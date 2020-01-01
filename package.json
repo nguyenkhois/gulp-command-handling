@@ -1,7 +1,7 @@
 {
     "name": "gulp-command-handling",
-    "version": "1.0.0",
-    "description": "Parsing Gulp command",
+    "version": "1.0.0-alpha.1.0.0",
+    "description": "Enhancement for the Gulp CLI",
     "main": "index.js",
     "scripts": {},
     "engines": {
