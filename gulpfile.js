@@ -16,9 +16,20 @@ gulpCommand
 function builds(cb) {
     const result = gulpCommand.parse(process.argv.slice(2));
 
-    console.log(gulpCommand.getOptions());
-    console.log(result);
+    //console.log(gulpCommand.getOptions());
+    //console.log(result);
 
+    if (result.site) {
+        if (result.site.minify) {
+            console.log('Minify it!');
+        }
+
+        if (result.site.overwrite) {
+            console.log('Overwrite it!');
+        }
+    } else {
+        console.log('Nothing to do');
+    }
 
     cb();
 }
