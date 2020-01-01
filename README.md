@@ -1,5 +1,5 @@
 # gulp-command-handling
-[![Node.js version](https://img.shields.io/node/v/gulp-command-handling.svg?style=flat)](https://nodejs.org)   [![gulp-command-handling](https://img.shields.io/npm/v/gulp-command-handling.svg?style=flat)](https://www.npmjs.com/package/gulp-command-handling/)
+[![Node.js version](https://img.shields.io/node/v/gulp-command-handling.svg?style=flat)](https://nodejs.org)   [![gulp-command-handling](https://img.shields.io/npm/v/gulp-command-handling.svg?style=flat&color=red)](https://www.npmjs.com/package/gulp-command-handling/)
 
 ## Table of contents
 
