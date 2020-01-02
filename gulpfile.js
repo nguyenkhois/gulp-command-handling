@@ -13,15 +13,15 @@ const appSettings = {
 
 gulpCommand
     .setting(appSettings)
-    .option('builds', '-s', '--site', 'Building styling for a specific site')
-    .subOption('builds', '--site', '-o', '--overwrite', 'Overwrite files in destination')
-    .subOption('builds', '--site', '-m', '--minify', 'Minify files in destination')
-    .option('builds', '-t', '--move-to', 'Move to new location')
-    .option('builds', '-n', '--new-name', 'Using a new file name')
+    .option('build', '-s', '--site', 'Building styling for a specific site')
+    .subOption('build', '--site', '-o', '--overwrite', 'Overwrite files in destination')
+    .subOption('build', '--site', '-m', '--minify', 'Minify files in destination')
+    .option('build', '-t', '--move-to', 'Move to new location')
+    .option('build', '-n', '--new-name', 'Using a new file name')
     .option('release', '-s', '--site', 'Release styling for a specific site')
     .subOption('release', '--site', '-e', '--new-version', 'Using new version number');
 
-function builds(cb) {
+function build(cb) {
     const result = gulpCommand.parse(process.argv.slice(2));
 
     //console.log(gulpCommand.getOptions());
@@ -42,7 +42,7 @@ function builds(cb) {
     cb();
 }
 
-exports.builds = builds;
+exports.build = build;
 
 /**
  * Run the Gulp command for testing

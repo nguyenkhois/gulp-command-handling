@@ -45,7 +45,7 @@ The development is using:
 - $ gulp build -s -m FlowerSite _(Simple using)_
 - $ gulp release --site --minify FlowerSite _(Using alias)_
 - $ gulp build --site --minify FlowerSite --move-to "/home/dev/" _(Combination)_
-- $ gulp builds -s -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0 _(Combination)_
+- $ gulp build -s -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0 _(Combination)_
 
 ## 4. Usage
 
@@ -92,12 +92,12 @@ const gulpCommand = new Command();
 
 // Command definition
 gulpCommand
-    .option('builds', '-s', '--site', 'Building styling for a specific site')
-    .subOption('builds', '--site', '-o', '--overwrite', 'Overwrite files in destination')
-    .subOption('builds', '--site', '-m', '--minify', 'Minify files in destination');
+    .option('build', '-s', '--site', 'Building styling for a specific site')
+    .subOption('build', '--site', '-o', '--overwrite', 'Overwrite files in destination')
+    .subOption('build', '--site', '-m', '--minify', 'Minify files in destination');
 
 // Using in a Gulp task
-function builds(cb) {
+function build(cb) {
     const result = gulpCommand.parse(process.argv.slice(2));
     //console.log(result);
 
@@ -116,13 +116,13 @@ function builds(cb) {
     cb();
 }
 
-exports.builds = builds;
+exports.build = build;
 ```
 
 ```
 // Running command
-$ gulp builds -s -m FlowerSite
-$ gulp builds --site --minify --overwrite FlowerSite
+$ gulp build -s -m FlowerSite
+$ gulp build --site --minify --overwrite FlowerSite
 ```
 
 ## 6. Thank you!
