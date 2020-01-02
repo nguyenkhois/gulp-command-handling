@@ -8,8 +8,8 @@
     - [System requirements](#system-requirements)
 3. [Main features](#3-main-features)
 4. [Usage](#4-usage)
-    - [Command line structure](#-command-line-structure)
-    - [Methods](#-methods)
+    - [Command line structure](#command-line-structure)
+    - [Methods](#methods)
 5. [Example](#5-example)
 6. [Thank you!](#6-thank-you)
 
