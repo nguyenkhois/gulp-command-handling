@@ -3,8 +3,8 @@ const { dfRegExOption, dfRegExAlias, typeOfParam, removeAliasSymbol } = require(
 
 //COMMAND constructor
 function Command() {
-    this.options = {}; //Option list
-    this.parsed = {}; //Parsing the user's command by using option list
+    this.options = {}; //Option definitions
+    this.parsed = {}; //Parsing the user's command by using this.options
     this.settings = { //Custom settings
         regexOption: false,
         regexAlias: false,
