@@ -4,15 +4,15 @@ const { Command } = require('./');
 
 const gulpCommand = new Command();
 
-// Using your own RegExp when it's needed
-const appSettings = {
-    regexOption: false,
+// Using custom RegExp when it's needed
+const customSettings = {
+    regexOption: false, // Default is false
     regexAlias: false,
-    regexArgument: false, //Ex: /[0-9]/i
+    regexArgument: false, // Ex: /[0-9]/i
 };
 
 gulpCommand
-    .setting(appSettings)
+    .setting(customSettings)
     .option('build', '-s', '--site', 'Building styling for a specific site')
     .subOption('build', '--site', '-o', '--overwrite', 'Overwrite files in destination')
     .subOption('build', '--site', '-m', '--minify', 'Minify files in destination')

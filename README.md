@@ -1,5 +1,5 @@
 # gulp-command-handling
-[![Node.js version](https://img.shields.io/node/v/gulp-command-handling.svg?style=flat)](https://nodejs.org)   [![gulp-command-handling](https://img.shields.io/npm/v/gulp-command-handling.svg?style=flat&color=red)](https://www.npmjs.com/package/gulp-command-handling/)
+[![Node.js version](https://img.shields.io/node/v/gulp-command-handling.svg?style=flat)](https://nodejs.org) [![gulp-command-handling](https://img.shields.io/npm/v/gulp-command-handling.svg?style=flat&color=red)](https://www.npmjs.com/package/gulp-command-handling/)
 
 ## Table of contents
 
@@ -10,6 +10,7 @@
 4. [Usage](#4-usage)
     - [Command line structure](#command-line-structure)
     - [Methods](#methods)
+    - [Custom definition](#custom-definition)
 5. [Example](#5-example)
 6. [Thank you!](#6-thank-you)
 
@@ -38,13 +39,13 @@ The development is using:
 -   Enhancement for the Gulp CLI with your own definition _(option, sub option, argument)_.
 -   Using alias for both option and sub option.
 -   Command combination for many times you need.
--   Using custom regular expression (RegExp) for your reason. _(It applies to checking input params for option, sub option and argument)_
+-   Using custom regular expression (RegExp) for your reason. _(It applies for params validation)_
 
 **Examples:**
 
 - $ gulp build -s -m FlowerSite _(Simple using)_
 - $ gulp release --site --minify FlowerSite _(Using alias)_
-- $ gulp build --site --minify FlowerSite --move-to "/home/dev/" _(Combination)_
+- $ gulp build --site --minify FlowerSite --move-to "/home/dev" _(Combination)_
 - $ gulp build -s -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0 _(Combination)_
 
 ## 4. Usage
@@ -80,6 +81,21 @@ You can use method chaining with the following order:
 |Between|`.subOption()`||
 |Last|`.parse()`|The method must be in the last of chaining|
 
+### Custom definition
+Regular Express (RegExp) is used for data validation. You can redefine them for your reason when needed by using the method `.setting()`. The general regexps are using if you don't use your own.
+
+It just now supports regexps for **option**, **alias** and **argument** validation. You should only change values of the properties: `regexOption`, `regexAlias` and `regexArgument`.
+
+**Example**:
+
+```
+const customSettings = {
+    regexOption: false, //Default is false
+    regexAlias: false,
+    regexArgument: [a-z]/i,
+};
+```
+
 ## 5. Example
 
 View more in the example `/gulpfile.js` on [GitHub repo](https://github.com/nguyenkhois/gulp-command-handling).
@@ -103,11 +119,11 @@ function build(cb) {
 
     if (result.site) {
         if (result.site.minify) {
-            console.log('Minify it!');
+            console.log('Minification task -> Done!');
         }
 
         if (result.site.overwrite) {
-            console.log('Overwrite it!');
+            console.log('Overwriting task -> Done!');
         }
     } else {
         console.log('Nothing to do');
