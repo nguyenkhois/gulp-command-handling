@@ -11,6 +11,7 @@ const customSettings = {
     regexArgument: false, // Ex: /[0-9]/i
 };
 
+// Command definition
 gulpCommand
     .setting(customSettings)
     .option('build', '-s', '--site', 'Building styling for a specific site')
@@ -21,6 +22,7 @@ gulpCommand
     .option('release', '-s', '--site', 'Release styling for a specific site')
     .subOption('release', '--site', '-e', '--new-version', 'Using new version number');
 
+// Gulp task
 function build(cb) {
     const result = gulpCommand.parse(process.argv.slice(2));
 

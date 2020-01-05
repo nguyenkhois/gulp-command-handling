@@ -60,41 +60,33 @@ The simple command line structure is used in this library:
 -   An alias is used as a key in the result object.
 -   An argument is the end of a part in the command.
 
-**BEWARE!** You should not using the options that Gulp has defined. Example: `-h` , `-v`, `-f` etc. Use the command `gulp --help` to view more detail.
+**BEWARE!** You should not using the options that are already using for Gulp CLI. Example: `-h` , `-v`, `-f` etc. Use the command `gulp --help` to view more about that.
 
 ### Methods
 
 | Method | Argument | Description |
 |---|---|---|
-|`.setting()`|Object|Custom definition _(Ex: custom RegExp)_|
-|`.option()`|`<task>, <option>, <optionAlias>, [description]`|Option definition|
-|`.subOption()`|`<task>, <optionAlias>, <subOption>, <subOptionAlias>, [description]`|Sub option definition|
-|`.getOptions()`|-|It returns an option list that is an object|
-|`.parse()`|`<process.argv>`|Parse the command line|
+|.setting()|Object|Custom definition _(Ex: custom RegExp)_|
+|.option()|`<task>`, `<option>`, `<optionAlias>`, `[description]`|Option definition|
+|.subOption()|`<task>`, `<optionAlias>`, `<subOption>`, `<subOptionAlias>`, `[description]`|Sub option definition|
+|.getOptions()||It returns an option list that is an object|
+|.parse()|`<process.argv>`|Parse the command line _(Ex: process.argv.slice(2))_|
 
 You can use method chaining with the following order:
 
-|Order|Method|Description|
+|Method|Order|Description|
 |---|---|---|
-|First|`.setting()`|The method must be in the first of chaining|
-|Between|`.option()`||
-|Between|`.subOption()`||
-|Last|`.parse()`|The method must be in the last of chaining|
+|.setting()|First|The method must be in the first position of chaining|
+|.option()|Between||
+|.subOption()|Between||
+|.parse()|Last|The method must be in the last position of chaining|
 
 ### Custom definition
 Regular Express (RegExp) is used for data validation. You can redefine them for your reason when needed by using the method `.setting()`. The general regexps are using if you don't use your own.
 
 It just now supports regexps for **option**, **alias** and **argument** validation. You should only change values of the properties: `regexOption`, `regexAlias` and `regexArgument`.
 
-**Example**:
-
-```
-const customSettings = {
-    regexOption: false, //Default is false
-    regexAlias: false,
-    regexArgument: [a-z]/i,
-};
-```
+View the [example](#5-example) for more detail.
 
 ## 5. Example
 
@@ -106,8 +98,16 @@ View more in the example `/gulpfile.js` on [GitHub repo](https://github.com/nguy
 const { Command } = require('gulp-command-handling');
 const gulpCommand = new Command();
 
+// Using custom RegExp when needed
+const customSettings = {
+    regexOption: false, //Default is false
+    regexAlias: false,
+    regexArgument: [a-z]/i,
+};
+
 // Command definition
 gulpCommand
+    .setting(customSettings)
     .option('build', '-s', '--site', 'Building styling for a specific site')
     .subOption('build', '--site', '-o', '--overwrite', 'Overwrite files in destination')
     .subOption('build', '--site', '-m', '--minify', 'Minify files in destination');

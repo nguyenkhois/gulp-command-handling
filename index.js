@@ -1,11 +1,11 @@
 'use strict';
 const { dfRegExOption, dfRegExAlias, typeOfParam, removeAliasSymbol } = require('./helpers');
 
-//COMMAND constructor
+// COMMAND constructor
 function Command() {
-    this.options = {}; //Option definitions
-    this.parsed = {}; //Parsing the user's command by using this.options
-    this.settings = { //Custom settings
+    this.options = {}; // Option definitions
+    this.parsed = {};  // Parsing the user's command by using this.options
+    this.settings = {  // Custom RegExp
         regexOption: false,
         regexAlias: false,
         regexArgument: false
@@ -187,7 +187,7 @@ Command.prototype.parse = function (processArgv = []) {
                             const optKey = removeAliasSymbol(optAlias);
 
                             if (!mainOptKey && taskRef[optKey] && !parsedCommand[optKey]) {
-                                //Parsing main option key
+                                //Parsing the main option key
                                 mainOptKey = optKey;
 
                                 parsedCommand = {
@@ -195,7 +195,7 @@ Command.prototype.parse = function (processArgv = []) {
                                     [mainOptKey]: {}
                                 };
                             } else if (parsedCommand[mainOptKey]) {
-                                //Parsing subOption key
+                                //Parsing the subOption key
                                 if (taskRef[mainOptKey].subOptions[optKey]) {
                                     parsedCommand[mainOptKey] = {
                                         ...parsedCommand[mainOptKey],
