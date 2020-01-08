@@ -48,5 +48,5 @@ exports.build = build;
 
 /**
  * Run the Gulp command for testing
- * gulp builds --site -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0
+ * gulp build --site -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0
  */

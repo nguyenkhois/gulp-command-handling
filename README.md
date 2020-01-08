@@ -115,7 +115,6 @@ gulpCommand
 // Using in a Gulp task
 function build(cb) {
     const result = gulpCommand.parse(process.argv.slice(2));
-    //console.log(result);
 
     if (result.site) {
         if (result.site.minify) {
@@ -136,7 +135,7 @@ exports.build = build;
 ```
 
 ```
-// Running command
+// Running the command for testing
 $ gulp build -s -m FlowerSite
 $ gulp build --site --minify --overwrite FlowerSite
 ```

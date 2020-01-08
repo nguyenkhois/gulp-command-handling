@@ -42,7 +42,7 @@ Command.prototype.setting = function (customSettings = { regexOption: false, reg
     return this;
 };
 
-Command.prototype.option = function (taskName, option, alias, description = "") {
+Command.prototype.option = function (taskName, option, alias, description = '') {
     const regExOption = this.settings.regexOption ? this.settings.regexOption : dfRegExOption,
         regExAlias = this.settings.regexAlias ? this.settings.regexAlias : dfRegExAlias;
 
@@ -152,9 +152,10 @@ Command.prototype.getOptions = function () {
 
 Command.prototype.parse = function (processArgv = []) {
     try {
-        if (!processArgv || !Array.isArray(processArgv)) {
-            throw (new Error(`\x1b[31mMissing the parameter: processArgv. It must be an array of argument(s)\x1b[0m`));
+        if (!Array.isArray(processArgv)) {
+            throw (new Error('Missing the parameter processArgv. It must be an array of argument(s)'));
         }
+
         const customRegEx = {
             regexOption: this.settings.regexOption,
             regexAlias: this.settings.regexAlias,
