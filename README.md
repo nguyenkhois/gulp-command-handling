@@ -32,21 +32,21 @@ The development is using:
 
 -   The minimum support for:
     -   [Node.js](https://nodejs.org/) version is **8.17.0** _(LTS version is a good choice for the stability)_.
-    -   [Gulp.js](https://gulpjs.com/) version is **4.0.0** _(Gulp CLI is installed on global)_
+    -   [Gulp.js](https://gulpjs.com/) version is **4.0.0** _(Gulp CLI is installed on global)_.
 
 ## 3. Main features
 
--   Enhancement for the Gulp CLI with your own definition _(option, sub option, argument)_.
--   Using alias for both option and sub option.
+-   Enhancement for the Gulp CLI with your own parameters _(option, sub option, argument)_.
+-   Using alias for option and sub option.
 -   Command combination for many times you need.
--   Using custom regular expression (RegExp) for your reason. _(It applies for params validation)_
+-   Using custom regular expression (RegExp) for your reason when needed. _(It applies for params validation)_
 
 **Examples:**
 
 - $ gulp build -s -m FlowerSite _(Simple using)_
 - $ gulp release --site --minify FlowerSite _(Using alias)_
-- $ gulp build --site --minify FlowerSite --move-to "/home/dev" _(Combination)_
-- $ gulp build -s -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0 _(Combination)_
+- $ gulp build --site --minify FlowerSite --move-to "/home/dev" _(Combination 2 times)_
+- $ gulp build -s -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0 _(Combination 3 times)_
 
 ## 4. Usage
 
@@ -94,7 +94,6 @@ View more in the example `/gulpfile.js` on [GitHub repo](https://github.com/nguy
 
 ```
 // gulpfile.js
-
 const { Command } = require('gulp-command-handling');
 const gulpCommand = new Command();
 

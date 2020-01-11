@@ -1,6 +1,6 @@
 "use strict";
 
-const { Command } = require('./');
+const { Command } = require("./");
 
 const gulpCommand = new Command();
 
@@ -8,19 +8,19 @@ const gulpCommand = new Command();
 const customSettings = {
     regexOption: false, // Default is false
     regexAlias: false,
-    regexArgument: false, // Ex: /[0-9]/i
+    regexArgument: false // Ex: /[0-9]/i
 };
 
 // Command definition
 gulpCommand
     .setting(customSettings)
-    .option('build', '-s', '--site', 'Building styling for a specific site')
-    .subOption('build', '--site', '-o', '--overwrite', 'Overwrite files in destination')
-    .subOption('build', '--site', '-m', '--minify', 'Minify files in destination')
-    .option('build', '-t', '--move-to', 'Move to new location')
-    .option('build', '-n', '--new-name', 'Using a new file name')
-    .option('release', '-s', '--site', 'Release styling for a specific site')
-    .subOption('release', '--site', '-e', '--new-version', 'Using new version number');
+    .option("build", "-s", "--site", "Building styling for a specific site")
+    .subOption("build", "--site", "-o", "--overwrite", "Overwrite files in destination")
+    .subOption("build", "--site", "-m", "--minify", "Minify files in destination")
+    .option("build", "-t", "--move-to", "Move to new location")
+    .option("build", "-n", "--new-name", "Using a new file name")
+    .option("release", "-s", "--site", "Release styling for a specific site")
+    .subOption("release", "--site", "-e", "--new-version", "Using new version number");
 
 // Gulp task
 function build(cb) {
@@ -31,14 +31,14 @@ function build(cb) {
 
     if (result.site) {
         if (result.site.minify) {
-            console.log('Minification task -> Done!');
+            console.log("Minification task -> Done!");
         }
 
         if (result.site.overwrite) {
-            console.log('Overwriting task -> Done!');
+            console.log("Overwriting task -> Done!");
         }
     } else {
-        console.log('Nothing to do');
+        console.log("Nothing to do");
     }
 
     cb();
@@ -47,6 +47,6 @@ function build(cb) {
 exports.build = build;
 
 /**
- * Run the Gulp command for testing
+ * Run the Gulp command for testing purpose
  * gulp build --site -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0
  */
