@@ -46,7 +46,7 @@ The development is using:
 - $ gulp build -s -m FlowerSite _(Simple using)_
 - $ gulp release --site --minify FlowerSite _(Using alias)_
 - $ gulp build --site --minify FlowerSite --move-to "/home/dev" _(Combination 2 times)_
-- $ gulp build -s -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0 _(Combination 3 times)_
+- $ gulp build -s -m -o FlowerSite -t "/home/dev" -n flowersite-v1.0.0 _(Combination 3 times)_
 
 ## 4. Usage
 
@@ -93,7 +93,8 @@ View the [example](#5-example) for more detail.
 View more in the example `/gulpfile.js` on [GitHub repo](https://github.com/nguyenkhois/gulp-command-handling).
 
 ```
-// gulpfile.js
+/* gulpfile.js */
+
 const { Command } = require('gulp-command-handling');
 const gulpCommand = new Command();
 
@@ -108,8 +109,8 @@ const customSettings = {
 gulpCommand
     .setting(customSettings)
     .option('build', '-s', '--site', 'Building styling for a specific site')
-    .subOption('build', '--site', '-o', '--overwrite', 'Overwrite files in destination')
     .subOption('build', '--site', '-m', '--minify', 'Minify files in destination');
+    .subOption('build', '--site', '-o', '--overwrite', 'Overwrite files in destination')
 
 // Using in a Gulp task
 function build(cb) {
@@ -134,8 +135,8 @@ exports.build = build;
 ```
 
 ```
-// Running the command for testing
-$ gulp build -s -m FlowerSite
+// Running the commands for testing purpose
+$ gulp build -s -m -o FlowerSite
 $ gulp build --site --minify --overwrite FlowerSite
 ```
 

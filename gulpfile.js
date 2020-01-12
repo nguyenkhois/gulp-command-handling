@@ -1,7 +1,6 @@
 "use strict";
 
 const { Command } = require("./");
-
 const gulpCommand = new Command();
 
 // Using custom RegExp when it's needed
@@ -15,14 +14,12 @@ const customSettings = {
 gulpCommand
     .setting(customSettings)
     .option("build", "-s", "--site", "Building styling for a specific site")
-    .subOption("build", "--site", "-o", "--overwrite", "Overwrite files in destination")
     .subOption("build", "--site", "-m", "--minify", "Minify files in destination")
+    .subOption("build", "--site", "-o", "--overwrite", "Overwrite files in destination")
     .option("build", "-t", "--move-to", "Move to new location")
-    .option("build", "-n", "--new-name", "Using a new file name")
-    .option("release", "-s", "--site", "Release styling for a specific site")
-    .subOption("release", "--site", "-e", "--new-version", "Using new version number");
+    .option("build", "-n", "--name", "Using a new file name");
 
-// Gulp task
+// Using in a Gulp task
 function build(cb) {
     const result = gulpCommand.parse(process.argv.slice(2));
 
@@ -48,5 +45,6 @@ exports.build = build;
 
 /**
  * Run the Gulp command for testing purpose
- * gulp build --site -m -o FlowerSite -t "/home/dev" --new-name flowersite-v1.0.0
+ * gulp build -s -m -o FlowerSite
+ * gulp build --site --minify --overwrite FlowerSite --move-to "/home/dev" --name flowersite-v1.0.0
  */

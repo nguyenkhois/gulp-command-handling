@@ -1,4 +1,5 @@
 "use strict";
+
 const { dfRegExOption, dfRegExAlias, typeOfParam, removeAliasSymbol } = require("./helpers");
 
 // COMMAND constructor
