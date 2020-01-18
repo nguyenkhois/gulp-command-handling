@@ -45,6 +45,7 @@ The development is using:
 
 - $ gulp build -s -m FlowerSite _(Simple using)_
 - $ gulp release --site --minify FlowerSite _(Using alias)_
+- $ gulp release --site --minify FlowerSite --publish _(No using the last argument)_
 - $ gulp build --site --minify FlowerSite --move-to "/home/dev" _(Combination 2 times)_
 - $ gulp build -s -m -o FlowerSite -t "/home/dev" -n flowersite-v1.0.0 _(Combination 3 times)_
 
